@@ -9,6 +9,10 @@
  * @package portfolio
  */
 
+ use PortfolioTheme\Pages\FrontPage;
+
+ $front_page = new FrontPage();
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -25,9 +29,7 @@
 
 <?php
 if ( is_front_page() ) {
-	?>
-		<div class="front-page" id="front-page" style="background-image: url( <?php the_post_thumbnail_url( 'large' ); ?>">
-		<?php
+	$front_page->header();
 }
 
 if ( ! is_front_page() ) {

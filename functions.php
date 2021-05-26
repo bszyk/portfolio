@@ -7,6 +7,9 @@
  * @package portfolio
  */
 
+
+require_once __DIR__ . '/vendor/autoload.php';
+
 if ( ! defined( 'PORTFOLIO_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( 'PORTFOLIO_VERSION', '0.1.0' );
@@ -184,3 +187,13 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+/**
+ * Allow adding tags to media library items.
+ */
+function wptp_add_tags_to_attachments() {
+	register_taxonomy_for_object_type( 'post_tag', 'attachment' );
+}
+	add_action( 'init', 'wptp_add_tags_to_attachments' );
+
+
